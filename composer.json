@@ -1,0 +1,21 @@
+{
+    "name": "nathanmac/laravel-parser",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nathanmac",
+            "email": "nathan.macnamara@arrowecs.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Nathanmac\\Parser": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
