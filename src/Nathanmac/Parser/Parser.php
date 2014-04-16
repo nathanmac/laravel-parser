@@ -8,7 +8,13 @@ class ParserException extends Exception {}
 
 class Parser {
 
-	public function payload() {
+	public function payload($format = false) {
+        if ($format !== false) {
+            if (isset(Config::get('parser::supported_formats')[$format])) {
+                return $this->{Config::get('parser::supported_formats')[$format]}($this->_payload());
+            }
+            throw new ParserException('invalid_or_unsupported_format');
+        }
 		return $this->{$this->_format()}($this->_payload());
 	}
 

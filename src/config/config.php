@@ -7,7 +7,7 @@ return array(
 	'supported_formats' => array(
 	    'application/xml' => 'xml',
 	    'application/json' => 'json',
-	    'application/vnd.php.serialized' => 'serial',
+	    'application/vnd.php.serialized' => 'serialize',
 	    'application/x-www-form-urlencoded' => 'querystr'
 	)
 );
