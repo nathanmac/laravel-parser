@@ -28,6 +28,7 @@ Once this operation completes, the final step is to add the service provider. Op
 ```php
 	Parse::json($payload);		// JSON > Array
 	Parse::xml($payload);		// XML > Array
+	Parse::yaml($payload);		// YAML > Array
 	Parse::querystr($payload);	// Query String > Array
 	Parse::serialize($payload);	// Serialized Object > Array
 ```
