@@ -1,6 +1,7 @@
 laravel-parser
 ==============
 
+[![Build Status](https://travis-ci.org/nathanmac/laravel-parser.svg?branch=master)](https://travis-ci.org/nathanmac/laravel-parser)
 [![Still Maintained](http://stillmaintained.com/nathanmac/laravel-parser.png)](http://stillmaintained.com/nathanmac/laravel-parser)
 
 
@@ -69,16 +70,47 @@ $parsed = Parse::xml('
 $parsed = Parse::querystr('to=Jack Smith&from=Jane Doe&subject=Hello World&body=Hello, whats going on...');
 ```
 
-
 ##### Parse Serialized Object
 ```php
 $parsed = Parse::serialize('a:1:{s:7:"message";a:4:{s:2:"to";s:10:"Jack Smith";s:4:"from";s:8:"Jane Doe";s:7:"subject";s:11:"Hello World";s:4:"body";s:24:"Hello, whats going on...";}}');
 ```
 
+##### Parse YAML
+```php
+$parsed = Parse::yaml('
+				---
+				message: 
+				    to: "Jack Smith"
+				    from: "Jane Doe"
+				    subject: "Hello World"
+				    body: "Hello, whats going on..."
+				');
+```
+
 ###### Supported Content-Types
 ```
+XML
+---
 application/xml > XML
+text/xml > XML
+
+JSON
+----
 application/json > JSON
+application/x-javascript > JSON
+text/javascript > JSON
+text/x-javascript > JSON
+text/x-json > JSON
+
+YAML
+----
+text/yaml > YAML
+text/x-yaml > YAML
+application/yaml > YAML
+application/x-yaml > YAML
+
+MISC
+----
 application/vnd.php.serialized > Serialized Object
 application/x-www-form-urlencoded' > Query String
 ```
