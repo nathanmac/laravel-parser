@@ -2,6 +2,7 @@
 
 namespace Nathanmac\Parser;
 
+use Symfony\Component\Yaml\Yaml;
 use Config, Exception;
 
 class ParserException extends Exception {}
@@ -13,7 +14,7 @@ class Parser {
             if (isset(Config::get('parser::supported_formats')[$format])) {
                 return $this->{Config::get('parser::supported_formats')[$format]}($this->_payload());
             }
-            throw new ParserException('invalid_or_unsupported_format');
+            throw new ParserException('Invalid Or Unsupported Format');
         }
 		return $this->{$this->_format()}($this->_payload());
 	}
@@ -33,7 +34,7 @@ class Parser {
         if ($string) {
             $xml = @simplexml_load_string($string, 'SimpleXMLElement', LIBXML_NOCDATA);
             if(!$xml)
-                throw new ParserException('failed_to_parse_XML');
+                throw new ParserException('Failed To Parse XML');
             return json_decode(json_encode((array) $xml), 1);   // Work arround to accept xml input
         }
         return array();
@@ -43,7 +44,7 @@ class Parser {
         if ($string) {
             $json = json_decode(trim($string), true);
             if (!$json)
-                throw new ParserException('failed_to_parse_JSON');
+                throw new ParserException('Failed To Parse JSON');
             return $json;
         }
         return array();
@@ -53,7 +54,7 @@ class Parser {
         if ($string) {
             $serial = @unserialize(trim($string));
             if (!$serial)
-                throw new ParserException('failed_to_parse_serialized_data');
+                throw new ParserException('Failed To Parse Serialized Data');
             return $serial;
         }
         return array();
@@ -63,8 +64,19 @@ class Parser {
         if ($string) {
             @parse_str(trim($string), $querystr);
             if (!$querystr)
-                throw new ParserException('failed_to_parse_querystring');
+                throw new ParserException('Failed To Parse Query String');
             return $querystr;
+        }
+        return array();
+    }
+
+    public function yaml($string) {
+        if ($string) {
+            try {
+                return Yaml::parse($string);
+            } catch (Exception $ex) {
+                throw new ParserException('Failed To Parse YAML');
+            }
         }
         return array();
     }
