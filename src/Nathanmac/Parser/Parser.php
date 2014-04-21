@@ -73,7 +73,7 @@ class Parser {
     public function yaml($string) {
         if ($string) {
             try {
-                return Yaml::parse($string);
+                return Yaml::parse(trim(preg_replace('/\t+/', '', $string)));
             } catch (Exception $ex) {
                 throw new ParserException('Failed To Parse YAML');
             }
