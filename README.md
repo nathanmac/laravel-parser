@@ -4,6 +4,8 @@ laravel-parser
 [![Build Status](https://travis-ci.org/nathanmac/laravel-parser.svg?branch=master)](https://travis-ci.org/nathanmac/laravel-parser)
 [![Still Maintained](http://stillmaintained.com/nathanmac/laravel-parser.png)](http://stillmaintained.com/nathanmac/laravel-parser)
 
+> Project no longer maintained see the [Parser](https://github.com/nathanmac/Parser) project for a replacement.
+
 
 Simple Format Parser For Laravel 4
 
